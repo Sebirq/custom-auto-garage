@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>RZV Auto Mods – Modificări Auto Galați</title>
+  <meta name="description" content="RZV Auto Mods Galați – lumini ambientale, navigații, camere de bord și marșarier, retapițări, steluțe în plafon, polish faruri, colantări. Programează-te online." />
+  <meta name="theme-color" content="#0a0610" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { 950: '#07040c', 900: '#0d0814', 800: '#150d20', 700: '#1f142e' },
+            neon: { 300: '#f0a6ff', 400: '#e46bff', 500: '#c83cf0', 600: '#a21cd4', 700: '#7a12a3' },
+            chrome: { 100: '#f4f4f7', 300: '#c9c9d2', 500: '#8b8b98' }
+          },
+          fontFamily: {
+            display: ['Orbitron', 'system-ui', 'sans-serif'],
+            body: ['Poppins', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root { --neon: #c83cf0; --neon-2: #e46bff; }
+    html, body { background: #07040c; }
+    body { font-family: 'Poppins', system-ui, sans-serif; color: #e9e6ee; -webkit-tap-highlight-color: transparent; }
+
+    /* Text crom ca în logo */
+    .chrome-text {
+      background: linear-gradient(180deg, #ffffff 0%, #d9d9e2 40%, #8d8d9b 55%, #f2f2f7 75%, #b5b5c2 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .neon-text {
+      background: linear-gradient(90deg, #f0a6ff, #c83cf0 50%, #e46bff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .neon-glow { text-shadow: 0 0 18px rgba(200,60,240,.55); }
+    .glow-box { box-shadow: 0 0 0 1px rgba(200,60,240,.35), 0 10px 40px -10px rgba(200,60,240,.55); }
+
+    /* Card cu bordură neon animată */
+    .neon-card { position: relative; background: linear-gradient(160deg, rgba(31,20,46,.85), rgba(13,8,20,.9)); border: 1px solid rgba(200,60,240,.18); }
+    .neon-card::before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(240,166,255,.8), transparent 35%, transparent 65%, rgba(200,60,240,.8));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .35s ease;
+    }
+    .neon-card:hover::before, .neon-card:focus-visible::before { opacity: 1; }
+
+    /* Butoane */
+    .btn-neon {
+      background: linear-gradient(135deg, #e46bff, #a21cd4);
+      box-shadow: 0 8px 30px -8px rgba(200,60,240,.8), inset 0 1px 0 rgba(255,255,255,.3);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn-neon:hover { transform: translateY(-2px); box-shadow: 0 14px 40px -8px rgba(200,60,240,.95), inset 0 1px 0 rgba(255,255,255,.3); filter: brightness(1.08); }
+    .btn-neon:active { transform: translateY(0) scale(.98); }
+    .btn-ghost { border: 1px solid rgba(240,166,255,.35); background: rgba(255,255,255,.03); transition: all .2s ease; }
+    .btn-ghost:hover { border-color: #e46bff; background: rgba(200,60,240,.12); }
+
+    /* Fundal hero: lumini ambientale */
+    .hero-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(60% 50% at 70% 40%, rgba(200,60,240,.35), transparent 70%),
+        radial-gradient(40% 40% at 10% 90%, rgba(162,28,212,.35), transparent 70%),
+        linear-gradient(180deg, rgba(7,4,12,.55) 0%, rgba(7,4,12,.75) 55%, #07040c 100%);
+    }
+    .smoke { position: absolute; border-radius: 9999px; filter: blur(60px); opacity: .55; animation: drift 14s ease-in-out infinite alternate; }
+    @keyframes drift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,-30px) scale(1.2); } }
+
+    /* Steluțe în plafon */
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 1px rgba(240,166,255,.9); animation: twinkle var(--d,3s) ease-in-out infinite; animation-delay: var(--delay,0s); }
+    @keyframes twinkle { 0%,100% { opacity: .15; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.3); } }
+
+    /* Linie neon care trece */
+    .light-sweep { position: relative; overflow: hidden; }
+    .light-sweep::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent); transform: skewX(-20deg); animation: sweep 4.5s ease-in-out infinite; pointer-events: none; }
+    @keyframes sweep { 0% { left: -60%; } 60%,100% { left: 130%; } }
+
+    /* Logo rotativ (roată dințată) */
+    .gear-spin { animation: spin 22s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Reveal la scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.show { opacity: 1; transform: none; }
+
+    /* Puls pe butonul de apel */
+    .pulse-ring::before { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid rgba(228,107,255,.8); animation: ring 2s ease-out infinite; }
+    @keyframes ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+
+    /* Calendar & sloturi */
+    .day-btn[aria-pressed="true"], .slot-btn[aria-pressed="true"] { background: linear-gradient(135deg,#e46bff,#a21cd4); color: #fff; border-color: transparent; box-shadow: 0 6px 20px -6px rgba(200,60,240,.9); }
+    .day-btn:disabled, .slot-btn:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+    .svc-pick[aria-pressed="true"] { border-color: #e46bff; background: rgba(200,60,240,.15); }
+    .svc-pick[aria-pressed="true"] .check { opacity: 1; transform: scale(1); }
+
+    /* Modal */
+    .modal { transition: opacity .3s ease, visibility .3s; }
+    .modal[aria-hidden="true"] { opacity: 0; visibility: hidden; pointer-events: none; }
+    .modal .panel { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .modal[aria-hidden="true"] .panel { transform: translateY(40px) scale(.97); }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }
+    input, textarea, select { font-size: 16px; } /* fără zoom pe iOS */
+    .field { background: rgba(255,255,255,.04); border: 1px solid rgba(240,166,255,.18); transition: border-color .2s, box-shadow .2s; }
+    .field:focus { outline: none; border-color: #e46bff; box-shadow: 0 0 0 3px rgba(200,60,240,.25); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden antialiased">
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16 md:h-20">
+      <a href="#acasa" class="flex items-center gap-2.5 group" aria-label="RZV Auto Mods – acasă">
+        <span class="relative grid place-items-center w-10 h-10 md:w-11 md:h-11">
+          <i class="fa-solid fa-gear gear-spin absolute inset-0 grid place-items-center text-[40px] md:text-[44px] text-chrome-300/70"></i>
+          <span class="relative font-display font-black text-[13px] md:text-sm neon-text">RP</span>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display font-black text-base md:text-lg tracking-wide chrome-text">RZVAUTOMODS</span>
+          <span class="block text-[10px] md:text-[11px] tracking-[0.2em] text-neon-300/80 uppercase">Modificări auto · Galați</span>
+        </span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-7 text-sm text-chrome-300">
+        <li><a class="hover:text-white transition" href="#servicii">Servicii</a></li>
+        <li><a class="hover:text-white transition" href="#programare">Programare</a></li>
+        <li><a class="hover:text-white transition" href="#recenzii">Recenzii</a></li>
+        <li><a class="hover:text-white transition" href="#mesaje">Mesaje</a></li>
+        <li><a class="hover:text-white transition" href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href="#" data-phone-link class="hidden sm:inline-flex items-center gap-2 btn-ghost rounded-full px-4 py-2 text-sm">
+          <i class="fa-solid fa-phone text-neon-400"></i><span data-phone-text></span>
+        </a>
+        <a href="#programare" class="hidden md:inline-flex btn-neon rounded-full px-5 py-2 text-sm font-semibold text-white">Programează-te</a>
+        <button id="menuBtn" class="lg:hidden w-11 h-11 grid place-items-center rounded-xl btn-ghost" aria-label="Deschide meniul" aria-expanded="false">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Meniu mobil -->
+    <div id="mobileMenu" class="lg:hidden grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+      <div class="overflow-hidden">
+        <ul class="px-4 pb-5 pt-2 space-y-1 bg-ink-950/95 backdrop-blur-xl border-b border-neon-500/20">
+          <li><a class="mobile-link flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5" href="#servicii"><i class="fa-solid fa-screwdriver-wrench w-5 text-neon-400"></i>Servicii</a></li>
+          <li><a class="mobile-link flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5" href="#programare"><i class="fa-regular fa-calendar-check w-5 text-neon-400"></i>Programare online</a></li>
+          <li><a class="mobile-link flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5" href="#recenzii"><i class="fa-solid fa-star w-5 text-neon-400"></i>Recenzii</a></li>
+          <li><a class="mobile-link flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5" href="#mesaje"><i class="fa-regular fa-comments w-5 text-neon-400"></i>Mesaje & întrebări</a></li>
+          <li><a class="mobile-link flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5" href="#contact"><i class="fa-solid fa-location-dot w-5 text-neon-400"></i>Contact</a></li>
+          <li class="pt-2"><a data-phone-link href="#" class="flex items-center justify-center gap-2 btn-neon rounded-xl py-3 font-semibold text-white"><i class="fa-solid fa-phone"></i>Sună: <span data-phone-text></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section id="acasa" class="relative min-h-[100svh] flex items-end md:items-center hero-bg overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80"
+           alt="Mașină sport în lumină de noapte" class="absolute inset-0 w-full h-full object-cover scale-105" id="heroImg"
+           onerror="this.style.display='none'" />
+      <div class="smoke w-72 h-72 bg-neon-500 -top-10 -right-10"></div>
+      <div class="smoke w-80 h-80 bg-neon-700 bottom-0 -left-20" style="animation-delay:-6s"></div>
+      <div id="stars" class="absolute inset-0 z-[1] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-28 pb-14 md:py-32">
+        <div class="max-w-3xl">
+          <span class="reveal inline-flex items-center gap-2 rounded-full border border-neon-400/40 bg-neon-500/10 px-3.5 py-1.5 text-xs sm:text-sm text-neon-300 backdrop-blur">
+            <span class="w-2 h-2 rounded-full bg-neon-400 animate-pulse"></span>
+            Atelier de modificări auto · Galați
+          </span>
+
+          <h1 class="reveal mt-5 font-display font-black leading-[1.05] text-[2.4rem] sm:text-6xl lg:text-7xl tracking-tight">
+            <span class="chrome-text">Mașina ta.</span><br />
+            <span class="neon-text neon-glow">Lumina ta.</span><br />
+            <span class="chrome-text">Stilul tău.</span>
+          </h1>
+
+          <p class="reveal mt-5 text-base sm:text-lg text-chrome-300 max-w-xl leading-relaxed">
+            Fiecare fir ascuns, fiecare cusătură dreaptă, fiecare panou montat fără urme.
+            <span class="text-white font-medium">Atenție obsesivă la detalii și manoperă curată</span> –
+            ca mașina ta să arate și să funcționeze ca din fabrică, doar mai bine.
+          </p>
+
+          <div class="reveal mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#programare" class="btn-neon light-sweep inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-4 font-semibold text-white text-base">
+              <i class="fa-regular fa-calendar-check"></i> Programează-te online
+            </a>
+            <a href="#" data-phone-link class="btn-ghost inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-4 font-semibold text-base">
+              <i class="fa-solid fa-phone text-neon-400"></i> Sună acum
+            </a>
+          </div>
+
+          <dl class="reveal mt-10 grid grid-cols-3 gap-3 max-w-lg">
+            <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 sm:p-4 backdrop-blur">
+              <dt class="text-[11px] sm:text-xs text-chrome-500">Lucrări</dt>
+              <dd class="font-display text-xl sm:text-2xl font-extrabold text-white"><span data-count="500">0</span>+</dd>
+            </div>
+            <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 sm:p-4 backdrop-blur">
+              <dt class="text-[11px] sm:text-xs text-chrome-500">Servicii</dt>
+              <dd class="font-display text-xl sm:text-2xl font-extrabold text-white"><span data-count="9">0</span></dd>
+            </div>
+            <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 sm:p-4 backdrop-blur">
+              <dt class="text-[11px] sm:text-xs text-chrome-500">Garanție</dt>
+              <dd class="font-display text-xl sm:text-2xl font-extrabold text-white">100%</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <a href="#servicii" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 text-xs text-chrome-500 hover:text-white transition" aria-label="Derulează la servicii">
+        <span>Descoperă</span>
+        <span class="w-6 h-10 rounded-full border border-chrome-500/60 grid justify-center pt-2"><span class="w-1 h-2 rounded-full bg-neon-400 animate-bounce"></span></span>
+      </a>
+    </section>
+
+    <!-- ================= BANDĂ SERVICII ================= -->
+    <div class="relative border-y border-neon-500/20 bg-ink-900 overflow-hidden py-4">
+      <div class="flex gap-10 whitespace-nowrap w-max animate-[marquee_28s_linear_infinite] text-sm font-display tracking-widest text-chrome-300" id="marquee"></div>
+      <style>@keyframes marquee { to { transform: translateX(-50%); } }</style>
+    </div>
+
+    <!-- ================= SERVICII ================= -->
+    <section id="servicii" class="relative py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="reveal text-center max-w-2xl mx-auto">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Ce facem</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-5xl chrome-text">Serviciile noastre</h2>
+          <p class="mt-4 text-chrome-300">Apasă pe un serviciu ca să vezi detalii și lucrări reale de pe TikTok-ul nostru.</p>
+        </div>
+
+        <div id="servicesGrid" class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ================= DESPRE / BANNER ================= -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">De ce RZV Auto Mods</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl chrome-text">Detaliile fac diferența.</h2>
+          <p class="mt-4 text-chrome-300 leading-relaxed">Nu montăm doar accesorii – le integrăm. Cablurile sunt trase pe traseele originale, conexiunile sunt izolate, iar panourile se închid exact cum au fost. Rezultatul: un interior care arată premium și funcționează fără probleme ani de zile.</p>
+
+          <ul class="mt-8 grid sm:grid-cols-2 gap-4">
+            <li class="neon-card rounded-2xl p-5 hover:-translate-y-1 transition">
+              <i class="fa-solid fa-ruler-combined text-2xl text-neon-400"></i>
+              <h3 class="mt-3 font-semibold text-white">Precizie la milimetru</h3>
+              <p class="mt-1 text-sm text-chrome-300">Fără clipsuri rupte, fără panouri care scârțâie.</p>
+            </li>
+            <li class="neon-card rounded-2xl p-5 hover:-translate-y-1 transition">
+              <i class="fa-solid fa-plug-circle-check text-2xl text-neon-400"></i>
+              <h3 class="mt-3 font-semibold text-white">Cablaj curat</h3>
+              <p class="mt-1 text-sm text-chrome-300">Siguranțe dedicate, fire ascunse, totul izolat corect.</p>
+            </li>
+            <li class="neon-card rounded-2xl p-5 hover:-translate-y-1 transition">
+              <i class="fa-solid fa-gem text-2xl text-neon-400"></i>
+              <h3 class="mt-3 font-semibold text-white">Materiale de calitate</h3>
+              <p class="mt-1 text-sm text-chrome-300">Piele ecologică, alcantara, folii premium.</p>
+            </li>
+            <li class="neon-card rounded-2xl p-5 hover:-translate-y-1 transition">
+              <i class="fa-solid fa-shield-halved text-2xl text-neon-400"></i>
+              <h3 class="mt-3 font-semibold text-white">Garanție la manoperă</h3>
+              <p class="mt-1 text-sm text-chrome-300">Stăm în spatele fiecărei lucrări.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal order-1 lg:order-2 relative">
+          <div class="absolute -inset-4 bg-neon-500/20 blur-3xl rounded-full"></div>
+          <img src="banner.jpg" alt="RZV Auto Mods – Modificări auto Galați" class="relative w-full rounded-3xl glow-box object-cover aspect-[16/9] lg:aspect-[4/3]"
+               onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CUM LUCRĂM ================= -->
+    <section class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="reveal text-center">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Simplu & rapid</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl chrome-text">Cum funcționează</h2>
+        </div>
+        <ol class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <li class="reveal neon-card rounded-2xl p-5 text-center">
+            <span class="mx-auto grid place-items-center w-12 h-12 rounded-full btn-neon font-display font-bold text-white">1</span>
+            <h3 class="mt-3 font-semibold text-white">Alegi serviciul</h3><p class="mt-1 text-xs sm:text-sm text-chrome-300">Unul sau mai multe.</p>
+          </li>
+          <li class="reveal neon-card rounded-2xl p-5 text-center">
+            <span class="mx-auto grid place-items-center w-12 h-12 rounded-full btn-neon font-display font-bold text-white">2</span>
+            <h3 class="mt-3 font-semibold text-white">Data & ora</h3><p class="mt-1 text-xs sm:text-sm text-chrome-300">Din calendarul online.</p>
+          </li>
+          <li class="reveal neon-card rounded-2xl p-5 text-center">
+            <span class="mx-auto grid place-items-center w-12 h-12 rounded-full btn-neon font-display font-bold text-white">3</span>
+            <h3 class="mt-3 font-semibold text-white">Lași telefonul</h3><p class="mt-1 text-xs sm:text-sm text-chrome-300">Te sunăm să confirmăm.</p>
+          </li>
+          <li class="reveal neon-card rounded-2xl p-5 text-center">
+            <span class="mx-auto grid place-items-center w-12 h-12 rounded-full btn-neon font-display font-bold text-white">4</span>
+            <h3 class="mt-3 font-semibold text-white">Pleci fericit</h3><p class="mt-1 text-xs sm:text-sm text-chrome-300">Cu mașina transformată.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= PROGRAMARE ================= -->
+    <section id="programare" class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(200,60,240,.18),transparent_70%)]"></div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="reveal text-center">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Programare online</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-5xl chrome-text">Rezervă-ți locul</h2>
+          <p class="mt-4 text-chrome-300">Alege serviciul, data și ora. Te contactăm telefonic pentru confirmare.</p>
+        </div>
+
+        <div class="reveal mt-10 neon-card rounded-3xl p-4 sm:p-8 glow-box">
+          <!-- Progress -->
+          <div class="flex items-center gap-2 mb-8" id="stepper">
+            <!-- generat din JS -->
+          </div>
+
+          <form id="bookingForm" novalidate>
+            <!-- Pas 1 -->
+            <fieldset data-step="1" class="step">
+              <legend class="font-display font-bold text-lg text-white mb-1">1. Ce lucrare dorești?</legend>
+              <p class="text-sm text-chrome-500 mb-4">Poți alege mai multe servicii.</p>
+              <div id="svcPicker" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            </fieldset>
+
+            <!-- Pas 2 -->
+            <fieldset data-step="2" class="step hidden">
+              <legend class="font-display font-bold text-lg text-white mb-1">2. Alege data</legend>
+              <p class="text-sm text-chrome-500 mb-4">Program: Luni–Vineri 09:00–18:00, Sâmbătă 09:00–14:00. Duminică închis.</p>
+              <div class="flex items-center justify-between mb-3">
+                <button type="button" id="prevMonth" class="w-10 h-10 rounded-xl btn-ghost" aria-label="Luna anterioară"><i class="fa-solid fa-chevron-left"></i></button>
+                <span id="monthLabel" class="font-semibold text-white capitalize"></span>
+                <button type="button" id="nextMonth" class="w-10 h-10 rounded-xl btn-ghost" aria-label="Luna următoare"><i class="fa-solid fa-chevron-right"></i></button>
+              </div>
+              <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] text-chrome-500 mb-1.5">
+                <span>Lu</span><span>Ma</span><span>Mi</span><span>Jo</span><span>Vi</span><span>Sâ</span><span>Du</span>
+              </div>
+              <div id="calendar" class="grid grid-cols-7 gap-1.5"></div>
+            </fieldset>
+
+            <!-- Pas 3 -->
+            <fieldset data-step="3" class="step hidden">
+              <legend class="font-display font-bold text-lg text-white mb-1">3. Alege ora</legend>
+              <p class="text-sm text-chrome-500 mb-4" id="slotDateLabel"></p>
+              <div id="slots" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
+            </fieldset>
+
+            <!-- Pas 4 -->
+            <fieldset data-step="4" class="step hidden">
+              <legend class="font-display font-bold text-lg text-white mb-1">4. Datele tale</legend>
+              <p class="text-sm text-chrome-500 mb-4">Lasă numărul de telefon ca să te putem suna pentru confirmare.</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <label class="block">
+                  <span class="text-sm text-chrome-300">Nume *</span>
+                  <input name="name" required autocomplete="name" class="field mt-1.5 w-full rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Ex: Andrei Popescu" />
+                </label>
+                <label class="block">
+                  <span class="text-sm text-chrome-300">Telefon *</span>
+                  <input name="phone" type="tel" inputmode="tel" required autocomplete="tel" class="field mt-1.5 w-full rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="07xx xxx xxx" />
+                </label>
+                <label class="block sm:col-span-2">
+                  <span class="text-sm text-chrome-300">Mașina (marcă, model, an)</span>
+                  <input name="car" class="field mt-1.5 w-full rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Ex: VW Passat B6, 2008" />
+                </label>
+                <label class="block sm:col-span-2">
+                  <span class="text-sm text-chrome-300">Detalii (opțional)</span>
+                  <textarea name="notes" rows="3" class="field mt-1.5 w-full rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Culoare ambientală dorită, tip material etc."></textarea>
+                </label>
+              </div>
+              <p id="formError" class="hidden mt-3 text-sm text-red-400"></p>
+            </fieldset>
+
+            <!-- Rezumat -->
+            <div id="summary" class="mt-6 rounded-2xl bg-white/[0.03] border border-white/10 p-4 text-sm text-chrome-300 hidden"></div>
+
+            <div class="mt-8 flex items-center justify-between gap-3">
+              <button type="button" id="backBtn" class="btn-ghost rounded-xl px-5 py-3 font-medium invisible"><i class="fa-solid fa-arrow-left mr-2"></i>Înapoi</button>
+              <button type="button" id="nextBtn" class="btn-neon rounded-xl px-6 py-3 font-semibold text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none">Continuă<i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+          </form>
+
+          <!-- Succes -->
+          <div id="bookingSuccess" class="hidden text-center py-6">
+            <div class="mx-auto w-20 h-20 rounded-full btn-neon grid place-items-center text-3xl text-white"><i class="fa-solid fa-check"></i></div>
+            <h3 class="mt-5 font-display font-bold text-2xl text-white">Cerere trimisă!</h3>
+            <p class="mt-2 text-chrome-300" id="successText"></p>
+            <p class="mt-4 text-sm text-chrome-500">Pentru confirmare rapidă, trimite-ne detaliile și pe WhatsApp sau SMS:</p>
+            <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+              <a id="waConfirm" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold text-white bg-[#25D366] hover:brightness-110 transition"><i class="fa-brands fa-whatsapp text-lg"></i>Trimite pe WhatsApp</a>
+              <a id="smsConfirm" class="btn-ghost inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold"><i class="fa-regular fa-message text-neon-400"></i>Trimite SMS</a>
+            </div>
+            <button id="newBooking" class="mt-6 text-sm text-neon-300 hover:text-white underline underline-offset-4">Fă o nouă programare</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RECENZII ================= -->
+    <section id="recenzii" class="py-20 md:py-28 bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Ce spun clienții</p>
+            <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-5xl chrome-text">Recenzii</h2>
+          </div>
+          <div class="flex items-center gap-4 neon-card rounded-2xl px-5 py-4">
+            <span id="avgRating" class="font-display text-4xl font-black text-white">5.0</span>
+            <div>
+              <div id="avgStars" class="text-neon-400 text-lg"></div>
+              <p class="text-xs text-chrome-500"><span id="reviewCount">0</span> recenzii</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="reviewsList" class="mt-10 flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 pb-2"></div>
+
+        <!-- Formular recenzie -->
+        <form id="reviewForm" class="reveal mt-10 max-w-2xl mx-auto neon-card rounded-3xl p-5 sm:p-8" novalidate>
+          <h3 class="font-display font-bold text-xl text-white">Lasă o recenzie</h3>
+          <p class="text-sm text-chrome-500 mt-1">Ai lucrat cu noi? Spune-le și altora cum a fost.</p>
+          <div class="mt-5">
+            <span class="text-sm text-chrome-300">Nota ta</span>
+            <div id="starPicker" class="mt-1 flex gap-1.5 text-3xl" role="radiogroup" aria-label="Nota"></div>
+          </div>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <input name="name" required maxlength="40" class="field rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Numele tău" />
+            <select name="service" class="field rounded-xl px-4 py-3 text-white bg-ink-900" id="reviewService"></select>
+          </div>
+          <textarea name="text" required maxlength="500" rows="3" class="field mt-4 w-full rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Cum a fost experiența?"></textarea>
+          <button class="mt-4 w-full sm:w-auto btn-neon rounded-xl px-6 py-3 font-semibold text-white"><i class="fa-solid fa-paper-plane mr-2"></i>Publică recenzia</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= MESAJE / CHAT ================= -->
+    <section id="mesaje" class="py-20 md:py-28">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="reveal text-center">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Comunitate</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-5xl chrome-text">Întrebări & mesaje</h2>
+          <p class="mt-4 text-chrome-300">Ai o întrebare despre o lucrare? Lasă un mesaj aici – îți răspundem cât de repede putem.</p>
+        </div>
+
+        <div class="reveal mt-10 neon-card rounded-3xl overflow-hidden glow-box">
+          <div class="flex items-center gap-3 px-4 sm:px-6 py-4 border-b border-white/10 bg-ink-800/60">
+            <span class="relative grid place-items-center w-10 h-10 rounded-full btn-neon font-display font-black text-xs text-white">RP
+              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-ink-800"></span>
+            </span>
+            <div>
+              <p class="font-semibold text-white leading-tight">RZV Auto Mods</p>
+              <p class="text-xs text-emerald-400">De obicei răspundem în câteva ore</p>
+            </div>
+          </div>
+          <div id="chatBox" class="h-[420px] overflow-y-auto px-4 sm:px-6 py-5 space-y-4 no-scrollbar"></div>
+          <form id="chatForm" class="border-t border-white/10 p-3 sm:p-4 bg-ink-900/70" novalidate>
+            <input name="name" maxlength="30" class="field w-full rounded-xl px-4 py-2.5 text-white placeholder:text-chrome-500 mb-2" placeholder="Numele tău" />
+            <div class="flex gap-2">
+              <input name="msg" required maxlength="400" class="field flex-1 min-w-0 rounded-xl px-4 py-3 text-white placeholder:text-chrome-500" placeholder="Scrie un mesaj..." />
+              <button class="btn-neon shrink-0 w-12 h-12 rounded-xl text-white" aria-label="Trimite mesajul"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOCIAL ================= -->
+    <section id="social" class="py-16 md:py-24 bg-ink-900/60 border-y border-neon-500/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="reveal text-center">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Urmărește-ne</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl chrome-text">Lucrările noastre, live</h2>
+          <p class="mt-3 text-chrome-300">Postăm zilnic montaje, înainte & după și transformări complete.</p>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-3 gap-4">
+          <a data-social="tiktok" target="_blank" rel="noopener" class="reveal neon-card group rounded-3xl p-6 flex items-center gap-4 hover:-translate-y-1 transition">
+            <span class="grid place-items-center w-14 h-14 rounded-2xl bg-black text-2xl text-white shadow-[3px_3px_0_#fe2c55,-3px_-3px_0_#25f4ee] group-hover:scale-110 transition"><i class="fa-brands fa-tiktok"></i></span>
+            <span><span class="block font-semibold text-white">TikTok</span><span class="block text-sm text-chrome-300">@rzvautomodsgl</span></span>
+            <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-chrome-500 group-hover:text-neon-400 transition"></i>
+          </a>
+          <a data-social="instagram" target="_blank" rel="noopener" class="reveal neon-card group rounded-3xl p-6 flex items-center gap-4 hover:-translate-y-1 transition">
+            <span class="grid place-items-center w-14 h-14 rounded-2xl text-2xl text-white bg-[linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)] group-hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></span>
+            <span><span class="block font-semibold text-white">Instagram</span><span class="block text-sm text-chrome-300">@rzvautomodsgl</span></span>
+            <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-chrome-500 group-hover:text-neon-400 transition"></i>
+          </a>
+          <a data-social="facebook" target="_blank" rel="noopener" class="reveal neon-card group rounded-3xl p-6 flex items-center gap-4 hover:-translate-y-1 transition">
+            <span class="grid place-items-center w-14 h-14 rounded-2xl bg-[#1877F2] text-2xl text-white group-hover:scale-110 transition"><i class="fa-brands fa-facebook-f"></i></span>
+            <span><span class="block font-semibold text-white">Facebook</span><span class="block text-sm text-chrome-300">RZV Auto Mods</span></span>
+            <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-chrome-500 group-hover:text-neon-400 transition"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8">
+        <div class="reveal">
+          <p class="text-neon-400 text-sm font-semibold tracking-[0.25em] uppercase">Contact</p>
+          <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-5xl chrome-text">Hai pe la noi</h2>
+          <p class="mt-4 text-chrome-300">Sună-ne pentru o ofertă rapidă sau trece pe la atelier.</p>
+
+          <a href="#" data-phone-link class="mt-8 neon-card group flex items-center gap-4 rounded-3xl p-5 hover:-translate-y-1 transition">
+            <span class="relative pulse-ring grid place-items-center w-14 h-14 rounded-2xl btn-neon text-xl text-white"><i class="fa-solid fa-phone"></i></span>
+            <span><span class="block text-sm text-chrome-500">Telefon</span><span class="block font-display text-xl sm:text-2xl font-bold text-white" data-phone-text></span></span>
+          </a>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <div class="neon-card rounded-3xl p-5">
+              <i class="fa-solid fa-location-dot text-xl text-neon-400"></i>
+              <p class="mt-2 text-sm text-chrome-500">Adresă</p>
+              <p class="font-medium text-white" data-address></p>
+            </div>
+            <div class="neon-card rounded-3xl p-5">
+              <i class="fa-regular fa-clock text-xl text-neon-400"></i>
+              <p class="mt-2 text-sm text-chrome-500">Program</p>
+              <p class="text-white text-sm">L–V: 09:00 – 18:00<br />Sâmbătă: 09:00 – 14:00<br /><span class="text-chrome-500">Duminică: închis</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal rounded-3xl overflow-hidden glow-box min-h-[320px]">
+          <iframe title="Hartă Galați" id="mapFrame" class="w-full h-full min-h-[320px] grayscale-[.3] invert-[.9] hue-rotate-180" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-neon-500/15 bg-ink-900 pb-28 md:pb-10 pt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <p class="font-display font-black text-xl chrome-text">RZVAUTOMODS</p>
+        <p class="text-xs tracking-[0.2em] text-neon-300/80 uppercase mt-1">Modificări auto · Galați</p>
+      </div>
+      <div class="flex gap-3">
+        <a data-social="tiktok" target="_blank" rel="noopener" aria-label="TikTok" class="w-11 h-11 grid place-items-center rounded-full btn-ghost hover:text-neon-300"><i class="fa-brands fa-tiktok"></i></a>
+        <a data-social="instagram" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 grid place-items-center rounded-full btn-ghost hover:text-neon-300"><i class="fa-brands fa-instagram"></i></a>
+        <a data-social="facebook" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 grid place-items-center rounded-full btn-ghost hover:text-neon-300"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+      <p class="text-xs text-chrome-500">© <span id="year"></span> RZV Auto Mods. Toate drepturile rezervate.</p>
+    </div>
+  </footer>
+
+  <!-- ================= BARĂ ACȚIUNI MOBIL ================= -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 p-3 pb-[max(.75rem,env(safe-area-inset-bottom))] bg-ink-950/85 backdrop-blur-xl border-t border-neon-500/20">
+    <div class="grid grid-cols-[auto_auto_1fr] gap-2">
+      <a href="#" data-phone-link class="relative pulse-ring w-12 h-12 grid place-items-center rounded-xl btn-ghost text-neon-300" aria-label="Sună"><i class="fa-solid fa-phone"></i></a>
+      <a href="#" data-wa-link target="_blank" rel="noopener" class="w-12 h-12 grid place-items-center rounded-xl bg-[#25D366] text-white text-xl" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="#programare" class="btn-neon rounded-xl grid place-items-center font-semibold text-white"><span><i class="fa-regular fa-calendar-check mr-2"></i>Programează-te</span></a>
+    </div>
+  </div>
+
+  <!-- Buton flotant desktop -->
+  <a href="#" data-wa-link target="_blank" rel="noopener" class="hidden md:grid fixed bottom-6 right-6 z-40 w-14 h-14 place-items-center rounded-full bg-[#25D366] text-white text-2xl shadow-lg hover:scale-110 transition" aria-label="Scrie-ne pe WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <!-- ================= MODAL SERVICIU ================= -->
+  <div id="svcModal" class="modal fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-6" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-close></div>
+    <div class="panel relative w-full sm:max-w-2xl max-h-[92svh] overflow-y-auto no-scrollbar rounded-t-3xl sm:rounded-3xl bg-ink-900 border border-neon-500/25 glow-box">
+      <div class="relative h-48 sm:h-64">
+        <img id="modalImg" alt="" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-transparent"></div>
+        <button class="absolute top-3 right-3 w-11 h-11 rounded-full bg-black/50 backdrop-blur grid place-items-center hover:bg-neon-600 transition" data-close aria-label="Închide"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <span class="sm:hidden absolute top-2 left-1/2 -translate-x-1/2 w-10 h-1.5 rounded-full bg-white/40"></span>
+      </div>
+      <div class="p-5 sm:p-8 -mt-10 relative">
+        <span id="modalIcon" class="grid place-items-center w-14 h-14 rounded-2xl btn-neon text-2xl text-white"></span>
+        <h3 id="modalTitle" class="mt-4 font-display font-extrabold text-2xl sm:text-3xl text-white"></h3>
+        <p id="modalDesc" class="mt-3 text-chrome-300 leading-relaxed"></p>
+        <ul id="modalFeatures" class="mt-5 grid sm:grid-cols-2 gap-2 text-sm"></ul>
+
+        <div class="mt-7">
+          <h4 class="flex items-center gap-2 font-semibold text-white"><i class="fa-brands fa-tiktok text-neon-400"></i>Lucrări de pe TikTok</h4>
+          <div id="modalTiktok" class="mt-3 space-y-2"></div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <button id="modalBook" class="btn-neon flex-1 rounded-xl px-6 py-3.5 font-semibold text-white"><i class="fa-regular fa-calendar-check mr-2"></i>Programează acest serviciu</button>
+          <a href="#" data-phone-link class="btn-ghost flex-1 text-center rounded-xl px-6 py-3.5 font-semibold"><i class="fa-solid fa-phone mr-2 text-neon-400"></i>Cere ofertă</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-8 z-[70] px-5 py-3 rounded-2xl bg-ink-800 border border-neon-500/40 text-sm text-white shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300"></div>
+
+  <script>
+  /* =========================================================
+     CONFIGURARE – modifică aici datele atelierului
+     ========================================================= */
+  const CONFIG = {
+    // ⚠️ Înlocuiește cu numărul real de telefon (format internațional, fără spații)
+    phone: '+40700000000',
+    phoneDisplay: '07XX XXX XXX',
+    address: 'Galați, România',
+    mapQuery: 'Galați, România',
+    social: {
+      tiktok: 'https://www.tiktok.com/@rzvautomodsgl',
+      instagram: 'https://www.instagram.com/rzvautomodsgl',
+      facebook: 'https://www.facebook.com/share/1c5nmA8oKU/'
+    },
+    // Ore disponibile pentru programări
+    hours: { weekday: ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], saturday: ['09:00','10:00','11:00','12:00','13:00'] }
+  };
+
+  /* =========================================================
+     SERVICII – adaugă link-uri TikTok în `tiktok` pentru fiecare serviciu
+     (ex: 'https://www.tiktok.com/@rzvautomodsgl/video/1234567890')
+     ========================================================= */
+  const IMG = (id, w = 900) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+  const SERVICES = [
+    {
+      id: 'ambientale', name: 'Lumini ambientale', icon: 'fa-solid fa-lightbulb', tag: 'Popular',
+      img: IMG('1549399542-7e3f8b79c341'),
+      short: 'Atmosferă premium în habitaclu, în orice culoare.',
+      desc: 'Montăm kituri de lumini ambientale cu fibră optică sau LED în bord, uși, console și picioare. Control din aplicație sau integrat, sute de culori și efecte, cablaj ascuns și protejat.',
+      features: ['Fibră optică în bord și uși', 'Control din telefon / aplicație', '64+ culori și efecte dinamice', 'Montaj fără tăieri vizibile'],
+      tiktok: []
+    },
+    {
+      id: 'navigatii', name: 'Navigații & Multimedia', icon: 'fa-solid fa-map-location-dot',
+      img: IMG('1511919884226-fd3cad34687c'),
+      short: 'Android Auto, CarPlay, ecrane mari, integrare completă.',
+      desc: 'Upgrade la unități multimedia cu Android, Apple CarPlay și Android Auto wireless. Păstrăm comenzile de pe volan, camera și senzorii, cu rame dedicate pentru un aspect de fabrică.',
+      features: ['CarPlay & Android Auto', 'Comenzi pe volan păstrate', 'Rame dedicate pe model', 'Configurare completă'],
+      tiktok: []
+    },
+    {
+      id: 'camere-bord', name: 'Camere de bord', icon: 'fa-solid fa-video',
+      img: IMG('1494976388531-d1058494cdd8'),
+      short: 'Înregistrare față/spate, alimentare ascunsă.',
+      desc: 'Montaj profesional pentru camere de bord față și spate, cu alimentare directă din siguranțe (hardwire) și mod parcare. Niciun fir la vedere.',
+      features: ['Hardwire din tablou', 'Mod parcare', 'Cameră față + spate', 'Fire complet ascunse'],
+      tiktok: []
+    },
+    {
+      id: 'camere-marsarier', name: 'Camere de marșarier', icon: 'fa-solid fa-car-rear',
+      img: IMG('1552519507-da3b142c6e3d'),
+      short: 'Parcare ușoară, cu ghidaje pe ecran.',
+      desc: 'Montăm camere de marșarier integrate discret în mânerul portbagajului sau lângă plăcuța de înmatriculare, conectate la navigația existentă sau la una nouă.',
+      features: ['Integrare discretă', 'Linii de ghidaj', 'Vedere nocturnă', 'Compatibil cu navigația'],
+      tiktok: []
+    },
+    {
+      id: 'retapitari', name: 'Retapițări uși & plafoane', icon: 'fa-solid fa-couch',
+      img: IMG('1606016159991-dfe4f2746ad5'),
+      short: 'Piele, alcantara, plafoane refăcute.',
+      desc: 'Retapițăm fețe de uși, plafoane căzute sau decolorate, stâlpi și parasolare. Lucrăm cu piele ecologică, alcantara și materiale textile premium, cu cusături drepte și finisaj curat.',
+      features: ['Plafoane căzute refăcute', 'Fețe de uși în alcantara/piele', 'Cusături decorative', 'Materiale premium'],
+      tiktok: []
+    },
+    {
+      id: 'stelute', name: 'Steluțe în plafon', icon: 'fa-solid fa-star', tag: 'Wow',
+      img: IMG('1489824904134-891ab64532f1'),
+      short: 'Cerul înstelat, ca în Rolls-Royce.',
+      desc: 'Starlight headliner: sute de puncte de fibră optică montate manual în plafon, cu efect de sclipire, stele căzătoare și control al culorii. Cel mai spectaculos upgrade de interior.',
+      features: ['300 – 1000+ steluțe', 'Efect twinkle & meteor', 'Control din aplicație', 'Montaj manual, punct cu punct'],
+      tiktok: []
+    },
+    {
+      id: 'polish-faruri', name: 'Polish faruri', icon: 'fa-solid fa-sun',
+      img: IMG('1580273916550-e323be2ae537'),
+      short: 'Faruri clare ca noi, vizibilitate mai bună.',
+      desc: 'Recondiționăm farurile îngălbenite sau mate prin șlefuire în mai multe etape, polish și strat de protecție UV. Arată mai bine și luminează mai bine.',
+      features: ['Șlefuire în etape', 'Polish profesional', 'Protecție UV', 'Rezultat vizibil imediat'],
+      tiktok: []
+    },
+    {
+      id: 'colantari', name: 'Colantări', icon: 'fa-solid fa-paint-roller',
+      img: IMG('1583121274602-3e2820c69888'),
+      short: 'Folii auto, accente negru lucios, dechroming.',
+      desc: 'Colantăm elemente exterioare și interioare: plafon negru, oglinzi, ornamente (dechrome), elemente de bord. Folii de calitate, aplicate curat, fără bule și fără margini ridicate.',
+      features: ['Dechrome & negru lucios', 'Plafon / oglinzi', 'Folii premium', 'Margini curate, fără bule'],
+      tiktok: []
+    },
+    {
+      id: 'detailing', name: 'Detailing interior & exterior', icon: 'fa-solid fa-spray-can-sparkles', tag: 'În curând', soon: true,
+      img: IMG('1607860108855-64acf2078ed9'),
+      short: 'Curățare profundă și protecție – în curând.',
+      desc: 'În curând: detailing complet interior și exterior – curățare profundă, tratamente pentru piele și plastice, polish și protecție a vopselei. Lasă-ne un mesaj dacă ești interesat!',
+      features: ['Curățare interior profundă', 'Tratament piele', 'Polish caroserie', 'Protecție ceramică'],
+      tiktok: []
+    }
+  ];
+
+  /* ========================================================= */
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = {
+    get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+  };
+  const waUrl = (text = '') => `https://wa.me/${CONFIG.phone.replace(/\D/g, '')}${text ? '?text=' + encodeURIComponent(text) : ''}`;
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.remove('opacity-0', 'translate-y-4');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => t.classList.add('opacity-0', 'translate-y-4'), 2800);
+  }
+
+  /* ---------- Date de contact & social ---------- */
+  $$('[data-phone-link]').forEach(a => a.href = `tel:${CONFIG.phone}`);
+  $$('[data-phone-text]').forEach(s => s.textContent = CONFIG.phoneDisplay);
+  $$('[data-wa-link]').forEach(a => a.href = waUrl('Salut! Aș dori informații despre o lucrare.'));
+  $$('[data-address]').forEach(s => s.textContent = CONFIG.address);
+  $$('[data-social]').forEach(a => a.href = CONFIG.social[a.dataset.social]);
+  $('#mapFrame').src = `https://www.google.com/maps?q=${encodeURIComponent(CONFIG.mapQuery)}&output=embed`;
+  $('#year').textContent = new Date().getFullYear();
+
+  /* ---------- Navbar & meniu mobil ---------- */
+  const nav = $('#navbar');
+  addEventListener('scroll', () => {
+    const s = scrollY > 20;
+    nav.classList.toggle('bg-ink-950/80', s);
+    nav.classList.toggle('backdrop-blur-xl', s);
+    nav.classList.toggle('shadow-[0_1px_0_rgba(200,60,240,.2)]', s);
+  }, { passive: true });
+
+  const menuBtn = $('#menuBtn'), mobileMenu = $('#mobileMenu');
+  const setMenu = (open) => {
+    mobileMenu.style.gridTemplateRows = open ? '1fr' : '0fr';
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.innerHTML = `<i class="fa-solid ${open ? 'fa-xmark' : 'fa-bars'} text-lg"></i>`;
+    if (open) nav.classList.add('bg-ink-950/80', 'backdrop-blur-xl');
+  };
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  $$('.mobile-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  /* ---------- Steluțe în hero ---------- */
+  const starsEl = $('#stars');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('span');
+    s.className = 'star';
+    s.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 70}%;--d:${2 + Math.random() * 4}s;--delay:${-Math.random() * 5}s`;
+    starsEl.appendChild(s);
+  }
+
+  /* ---------- Parallax ușor pe hero ---------- */
+  const heroImg = $('#heroImg');
+  addEventListener('scroll', () => { if (scrollY < innerHeight) heroImg.style.transform = `scale(1.05) translateY(${scrollY * 0.25}px)`; }, { passive: true });
+
+  /* ---------- Marquee ---------- */
+  const mq = SERVICES.map(s => `<span class="inline-flex items-center gap-3"><i class="${s.icon} text-neon-400"></i>${s.name.toUpperCase()}</span>`).join('');
+  $('#marquee').innerHTML = mq + mq;
+
+  /* ---------- Grilă servicii ---------- */
+  $('#servicesGrid').innerHTML = SERVICES.map((s, i) => `
+    <button type="button" data-svc="${s.id}" class="reveal neon-card group text-left rounded-3xl overflow-hidden hover:-translate-y-1.5 transition duration-300 focus:outline-none" style="transition-delay:${(i % 3) * 80}ms">
+      <div class="relative h-44 sm:h-48 overflow-hidden bg-gradient-to-br from-neon-700/40 to-ink-900">
+        <img src="${s.img}" alt="${esc(s.name)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ${s.soon ? 'grayscale' : ''}" onerror="this.style.display='none'" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/20 to-transparent"></div>
+        <div class="absolute inset-0 bg-neon-500/0 group-hover:bg-neon-500/15 transition"></div>
+        ${s.tag ? `<span class="absolute top-3 left-3 text-[11px] font-semibold uppercase tracking-wider rounded-full px-3 py-1 ${s.soon ? 'bg-white/15 text-white' : 'btn-neon text-white'}">${s.tag}</span>` : ''}
+        <span class="absolute bottom-3 left-4 grid place-items-center w-12 h-12 rounded-2xl bg-ink-900/80 backdrop-blur border border-neon-500/40 text-xl text-neon-300 group-hover:bg-neon-600 group-hover:text-white group-hover:rotate-6 transition"><i class="${s.icon}"></i></span>
+      </div>
+      <div class="p-5">
+        <h3 class="font-semibold text-lg text-white">${s.name}</h3>
+        <p class="mt-1 text-sm text-chrome-300">${s.short}</p>
+        <span class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-neon-300 group-hover:gap-3 transition-all">Vezi detalii & lucrări <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </button>`).join('');
+
+  /* ---------- Modal serviciu ---------- */
+  const modal = $('#svcModal');
+  let currentSvc = null, lastFocus = null;
+  function openModal(id) {
+    const s = SERVICES.find(x => x.id === id);
+    if (!s) return;
+    currentSvc = s; lastFocus = document.activeElement;
+    $('#modalImg').style.display = '';
+    $('#modalImg').src = s.img.replace('w=900', 'w=1400');
+    $('#modalImg').alt = s.name;
+    $('#modalIcon').innerHTML = `<i class="${s.icon}"></i>`;
+    $('#modalTitle').textContent = s.name;
+    $('#modalDesc').textContent = s.desc;
+    $('#modalFeatures').innerHTML = s.features.map(f => `<li class="flex items-start gap-2 rounded-xl bg-white/[0.04] px-3 py-2.5"><i class="fa-solid fa-circle-check text-neon-400 mt-0.5"></i><span class="text-chrome-100">${esc(f)}</span></li>`).join('');
+    const links = s.tiktok.length
+      ? s.tiktok.map((url, i) => `
+        <a href="${esc(url)}" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-xl bg-white/[0.04] hover:bg-neon-500/15 border border-white/5 hover:border-neon-500/40 px-4 py-3 transition">
+          <span class="grid place-items-center w-10 h-10 rounded-lg bg-black text-white shadow-[2px_2px_0_#fe2c55,-2px_-2px_0_#25f4ee]"><i class="fa-solid fa-play text-xs"></i></span>
+          <span class="flex-1 text-sm text-white">${esc(s.name)} – lucrarea #${i + 1}</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-chrome-500 group-hover:text-neon-300"></i>
+        </a>`).join('')
+      : `<a href="${CONFIG.social.tiktok}" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-xl bg-white/[0.04] hover:bg-neon-500/15 border border-white/5 hover:border-neon-500/40 px-4 py-3 transition">
+          <span class="grid place-items-center w-10 h-10 rounded-lg bg-black text-white shadow-[2px_2px_0_#fe2c55,-2px_-2px_0_#25f4ee]"><i class="fa-brands fa-tiktok"></i></span>
+          <span class="flex-1 text-sm text-white">Vezi lucrări de ${esc(s.name.toLowerCase())} pe @rzvautomodsgl</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-chrome-500 group-hover:text-neon-300"></i>
+        </a>`;
+    $('#modalTiktok').innerHTML = links;
+    $('#modalBook').innerHTML = s.soon
+      ? '<i class="fa-regular fa-bell mr-2"></i>Anunță-mă când e disponibil'
+      : '<i class="fa-regular fa-calendar-check mr-2"></i>Programează acest serviciu';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('[data-close].absolute.top-3', modal)?.focus(), 50);
+  }
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lastFocus?.focus?.();
+  }
+  $('#servicesGrid').addEventListener('click', e => { const b = e.target.closest('[data-svc]'); if (b) openModal(b.dataset.svc); });
+  $$('[data-close]', modal).forEach(el => el.addEventListener('click', closeModal));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(); });
+  $('#modalBook').addEventListener('click', () => {
+    const s = currentSvc;
+    closeModal();
+    if (s.soon) {
+      const f = $('#chatForm');
+      f.msg.value = `Bună! Mă interesează serviciul de ${s.name.toLowerCase()} când va fi disponibil.`;
+      $('#mesaje').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => f.msg.focus({ preventScroll: true }), 700);
+      return;
+    }
+    booking.services = new Set([s.id]);
+    renderPicker(); goStep(1);
+    $('#programare').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* =========================================================
+     PROGRAMARE
+     ========================================================= */
+  const booking = { services: new Set(), date: null, time: null };
+  const BOOKED_KEY = 'rzv_bookings';
+  let step = 1;
+  const view = new Date(); view.setDate(1);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + 60);
+  const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const niceDate = d => d.toLocaleDateString('ro-RO', { weekday: 'long', day: 'numeric', month: 'long' });
+  const bookable = SERVICES.filter(s => !s.soon);
+
+  function renderStepper() {
+    const labels = ['Serviciu', 'Data', 'Ora', 'Date'];
+    $('#stepper').innerHTML = labels.map((l, i) => {
+      const n = i + 1, done = n < step, active = n === step;
+      return `<div class="flex-1">
+        <div class="h-1.5 rounded-full ${done || active ? 'bg-gradient-to-r from-neon-400 to-neon-600' : 'bg-white/10'} transition-all duration-500"></div>
+        <p class="mt-2 text-[11px] sm:text-xs ${active ? 'text-white font-semibold' : 'text-chrome-500'}">${done ? '<i class="fa-solid fa-check text-neon-400 mr-1"></i>' : ''}${l}</p>
+      </div>`;
+    }).join('');
+  }
+
+  function renderPicker() {
+    $('#svcPicker').innerHTML = bookable.map(s => `
+      <button type="button" class="svc-pick flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-left hover:border-neon-500/50 transition" data-id="${s.id}" aria-pressed="${booking.services.has(s.id)}">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-neon-500/15 text-neon-300"><i class="${s.icon}"></i></span>
+        <span class="flex-1 font-medium text-white text-sm sm:text-base">${s.name}</span>
+        <span class="check grid place-items-center w-6 h-6 rounded-full btn-neon text-[10px] text-white opacity-0 scale-50 transition"><i class="fa-solid fa-check"></i></span>
+      </button>`).join('');
+    updateNav();
+  }
+  $('#svcPicker').addEventListener('click', e => {
+    const b = e.target.closest('.svc-pick'); if (!b) return;
+    const id = b.dataset.id;
+    booking.services.has(id) ? booking.services.delete(id) : booking.services.add(id);
+    b.setAttribute('aria-pressed', booking.services.has(id));
+    updateNav();
+  });
+
+  function slotsFor(date) {
+    const dow = date.getDay();
+    if (dow === 0) return [];
+    return dow === 6 ? CONFIG.hours.saturday : CONFIG.hours.weekday;
+  }
+  function takenSlots(dateStr) {
+    return store.get(BOOKED_KEY, []).filter(b => b.date === dateStr).map(b => b.time);
+  }
+
+  function renderCalendar() {
+    $('#monthLabel').textContent = view.toLocaleDateString('ro-RO', { month: 'long', year: 'numeric' });
+    const first = new Date(view);
+    const offset = (first.getDay() + 6) % 7; // luni = 0
+    const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+    let html = '<span></span>'.repeat(offset);
+    for (let d = 1; d <= days; d++) {
+      const date = new Date(view.getFullYear(), view.getMonth(), d);
+      const ds = ymd(date);
+      const closed = date.getDay() === 0;
+      const past = date < today || date > maxDate;
+      const now = new Date();
+      const freeLeft = slotsFor(date).filter(t => !takenSlots(ds).includes(t) && !(ds === ymd(now) && t <= `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`)).length;
+      const disabled = closed || past || freeLeft === 0;
+      html += `<button type="button" class="day-btn aspect-square rounded-xl border border-white/10 bg-white/[0.03] text-sm font-medium hover:border-neon-500/60 transition ${ds === ymd(today) ? 'ring-1 ring-neon-400/60' : ''}"
+        data-date="${ds}" ${disabled ? 'disabled' : ''} aria-pressed="${booking.date === ds}" aria-label="${niceDate(date)}">${d}</button>`;
+    }
+    $('#calendar').innerHTML = html;
+    const prevDisabled = view.getFullYear() === today.getFullYear() && view.getMonth() === today.getMonth();
+    $('#prevMonth').disabled = prevDisabled; $('#prevMonth').classList.toggle('opacity-30', prevDisabled);
+    const nextDisabled = new Date(view.getFullYear(), view.getMonth() + 1, 1) > maxDate;
+    $('#nextMonth').disabled = nextDisabled; $('#nextMonth').classList.toggle('opacity-30', nextDisabled);
+  }
+  $('#prevMonth').addEventListener('click', () => { view.setMonth(view.getMonth() - 1); renderCalendar(); });
+  $('#nextMonth').addEventListener('click', () => { view.setMonth(view.getMonth() + 1); renderCalendar(); });
+  $('#calendar').addEventListener('click', e => {
+    const b = e.target.closest('.day-btn'); if (!b || b.disabled) return;
+    booking.date = b.dataset.date; booking.time = null;
+    $$('.day-btn').forEach(x => x.setAttribute('aria-pressed', x === b));
+    updateNav();
+  });
+
+  function renderSlots() {
+    const [y, m, d] = booking.date.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    $('#slotDateLabel').innerHTML = `<i class="fa-regular fa-calendar mr-1.5 text-neon-400"></i><span class="capitalize">${niceDate(date)}</span>`;
+    const taken = takenSlots(booking.date);
+    const now = new Date();
+    const nowHM = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    $('#slots').innerHTML = slotsFor(date).map(t => {
+      const dis = taken.includes(t) || (booking.date === ymd(now) && t <= nowHM);
+      return `<button type="button" class="slot-btn rounded-xl border border-white/10 bg-white/[0.03] py-3 font-medium hover:border-neon-500/60 transition" data-time="${t}" ${dis ? 'disabled' : ''} aria-pressed="${booking.time === t}">${t}</button>`;
+    }).join('');
+  }
+  $('#slots').addEventListener('click', e => {
+    const b = e.target.closest('.slot-btn'); if (!b || b.disabled) return;
+    booking.time = b.dataset.time;
+    $$('.slot-btn').forEach(x => x.setAttribute('aria-pressed', x === b));
+    updateNav();
+  });
+
+  function renderSummary() {
+    const box = $('#summary');
+    if (step < 2 || !booking.services.size) { box.classList.add('hidden'); return; }
+    const names = [...booking.services].map(id => SERVICES.find(s => s.id === id).name).join(', ');
+    let dateTxt = '';
+    if (booking.date) {
+      const [y, m, d] = booking.date.split('-').map(Number);
+      dateTxt = niceDate(new Date(y, m - 1, d)) + (booking.time ? `, ora ${booking.time}` : '');
+    }
+    box.innerHTML = `<p class="flex gap-2"><i class="fa-solid fa-screwdriver-wrench text-neon-400 mt-1"></i><span><span class="text-chrome-500">Servicii:</span> <span class="text-white">${names}</span></span></p>
+      ${dateTxt ? `<p class="flex gap-2 mt-1.5"><i class="fa-regular fa-calendar text-neon-400 mt-1"></i><span><span class="text-chrome-500">Când:</span> <span class="text-white capitalize">${dateTxt}</span></span></p>` : ''}`;
+    box.classList.remove('hidden');
+  }
+
+  function canContinue() {
+    if (step === 1) return booking.services.size > 0;
+    if (step === 2) return !!booking.date;
+    if (step === 3) return !!booking.time;
+    return true;
+  }
+  function updateNav() {
+    $('#nextBtn').disabled = !canContinue();
+    $('#backBtn').classList.toggle('invisible', step === 1);
+    $('#nextBtn').innerHTML = step === 4 ? '<i class="fa-solid fa-paper-plane mr-2"></i>Trimite programarea' : 'Continuă<i class="fa-solid fa-arrow-right ml-2"></i>';
+    renderSummary();
+  }
+  function goStep(n) {
+    step = n;
+    $$('.step').forEach(f => f.classList.toggle('hidden', +f.dataset.step !== n));
+    if (n === 2) {
+      if (booking.date) { const [y, m] = booking.date.split('-').map(Number); view.setFullYear(y, m - 1, 1); }
+      renderCalendar();
+    }
+    if (n === 3) renderSlots();
+    renderStepper(); updateNav();
+  }
+  $('#backBtn').addEventListener('click', () => goStep(Math.max(1, step - 1)));
+  $('#nextBtn').addEventListener('click', () => {
+    if (!canContinue()) return;
+    if (step < 4) { goStep(step + 1); $('#programare').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    submitBooking();
+  });
+
+  function submitBooking() {
+    const f = $('#bookingForm');
+    const name = f.name.value.trim(), phone = f.phone.value.trim();
+    const digits = phone.replace(/\D/g, '');
+    const err = $('#formError');
+    if (name.length < 2) { err.textContent = 'Te rugăm să completezi numele.'; err.classList.remove('hidden'); f.name.focus(); return; }
+    if (digits.length < 10 || digits.length > 13) { err.textContent = 'Introdu un număr de telefon valid (ex: 07xx xxx xxx).'; err.classList.remove('hidden'); f.phone.focus(); return; }
+    err.classList.add('hidden');
+
+    const entry = {
+      services: [...booking.services].map(id => SERVICES.find(s => s.id === id).name),
+      date: booking.date, time: booking.time, name, phone,
+      car: f.car.value.trim(), notes: f.notes.value.trim(), createdAt: Date.now()
+    };
+    const all = store.get(BOOKED_KEY, []); all.push(entry); store.set(BOOKED_KEY, all);
+
+    const [y, m, d] = entry.date.split('-').map(Number);
+    const when = `${niceDate(new Date(y, m - 1, d))}, ora ${entry.time}`;
+    const msg = `Programare RZV Auto Mods\n• Servicii: ${entry.services.join(', ')}\n• Data: ${when}\n• Nume: ${name}\n• Telefon: ${phone}` +
+      (entry.car ? `\n• Mașina: ${entry.car}` : '') + (entry.notes ? `\n• Detalii: ${entry.notes}` : '');
+    $('#waConfirm').href = waUrl(msg);
+    $('#smsConfirm').href = `sms:${CONFIG.phone}?&body=${encodeURIComponent(msg)}`;
+    $('#successText').innerHTML = `Mulțumim, <span class="text-white font-medium">${esc(name)}</span>! Te vom suna la <span class="text-white font-medium">${esc(phone)}</span> pentru confirmarea programării din <span class="text-white font-medium">${when}</span>.`;
+
+    f.classList.add('hidden'); $('#stepper').classList.add('hidden');
+    $('#bookingSuccess').classList.remove('hidden');
+    toast('✅ Programarea a fost înregistrată!');
+  }
+  $('#newBooking').addEventListener('click', () => {
+    booking.services.clear(); booking.date = null; booking.time = null;
+    $('#bookingForm').reset();
+    $('#bookingForm').classList.remove('hidden'); $('#stepper').classList.remove('hidden');
+    $('#bookingSuccess').classList.add('hidden');
+    renderPicker(); goStep(1);
+  });
+
+  renderPicker(); goStep(1);
+
+  /* =========================================================
+     RECENZII
+     ========================================================= */
+  const REVIEW_KEY = 'rzv_reviews';
+  const SEED_REVIEWS = [
+    { name: 'Andrei M.', rating: 5, service: 'Steluțe în plafon', text: 'Plafonul cu steluțe arată incredibil, fiecare punct pus perfect. Nici nu se vede pe unde au intrat firele. Recomand 100%!', date: '2026-09-02' },
+    { name: 'Cristina P.', rating: 5, service: 'Lumini ambientale', text: 'Ambientalele în toate ușile și bordul, controlate din telefon. Lucru curat, explicat tot, preț corect.', date: '2026-08-21' },
+    { name: 'Bogdan L.', rating: 5, service: 'Navigații & Multimedia', text: 'Mi-au montat navigație cu CarPlay pe Passat, cu cameră de marșarier. Arată ca din fabrică. Băieți serioși!', date: '2026-08-10' },
+  ];
+  let rating = 5;
+  const starsHtml = (n, cls = '') => Array.from({ length: 5 }, (_, i) => `<i class="${i < Math.round(n) ? 'fa-solid' : 'fa-regular'} fa-star ${cls}"></i>`).join('');
+
+  function renderReviews() {
+    const list = [...store.get(REVIEW_KEY, []), ...SEED_REVIEWS];
+    const avg = list.reduce((a, r) => a + r.rating, 0) / list.length;
+    $('#avgRating').textContent = avg.toFixed(1);
+    $('#avgStars').innerHTML = starsHtml(avg);
+    $('#reviewCount').textContent = list.length;
+    $('#reviewsList').innerHTML = list.map(r => `
+      <article class="neon-card shrink-0 w-[85%] sm:w-[60%] md:w-auto snap-center rounded-3xl p-5 sm:p-6 hover:-translate-y-1 transition">
+        <div class="flex items-center gap-3">
+          <span class="grid place-items-center w-11 h-11 rounded-full btn-neon font-semibold text-white">${esc(r.name.charAt(0).toUpperCase())}</span>
+          <div class="min-w-0">
+            <p class="font-semibold text-white truncate">${esc(r.name)}</p>
+            <p class="text-xs text-chrome-500">${esc(r.service)} · ${new Date(r.date).toLocaleDateString('ro-RO', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+          </div>
+        </div>
+        <div class="mt-3 text-neon-400 text-sm">${starsHtml(r.rating)}</div>
+        <p class="mt-2 text-sm text-chrome-300 leading-relaxed">„${esc(r.text)}"</p>
+      </article>`).join('');
+  }
+  function renderStarPicker() {
+    $('#starPicker').innerHTML = Array.from({ length: 5 }, (_, i) => `
+      <button type="button" role="radio" aria-checked="${i + 1 === rating}" aria-label="${i + 1} stele" data-r="${i + 1}" class="transition hover:scale-125 ${i < rating ? 'text-neon-400' : 'text-chrome-500/50'}">
+        <i class="fa-solid fa-star"></i></button>`).join('');
+  }
+  $('#starPicker').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (b) { rating = +b.dataset.r; renderStarPicker(); } });
+  $('#reviewService').innerHTML = SERVICES.filter(s => !s.soon).map(s => `<option>${s.name}</option>`).join('');
+  $('#reviewForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, name = f.name.value.trim(), text = f.text.value.trim();
+    if (!name || text.length < 5) { toast('Completează numele și câteva cuvinte despre experiență.'); return; }
+    const list = store.get(REVIEW_KEY, []);
+    list.unshift({ name, rating, service: f.service.value, text, date: ymd(new Date()) });
+    store.set(REVIEW_KEY, list);
+    f.reset(); rating = 5; renderStarPicker(); renderReviews();
+    toast('⭐ Mulțumim pentru recenzie!');
+  });
+  renderReviews(); renderStarPicker();
+
+  /* =========================================================
+     MESAJE / CHAT
+     ========================================================= */
+  const CHAT_KEY = 'rzv_chat';
+  const SEED_CHAT = [
+    { name: 'Mihai', text: 'Salut! Cât durează montajul de steluțe în plafon la un Golf 7?', ts: Date.now() - 86400000 * 3, own: false },
+    { name: 'RZV Auto Mods', text: 'Salut Mihai! De obicei o zi de lucru, în funcție de numărul de steluțe. Sună-ne și îți facem o ofertă 😉', ts: Date.now() - 86400000 * 3 + 3600000, admin: true },
+  ];
+  function renderChat() {
+    const msgs = [...SEED_CHAT, ...store.get(CHAT_KEY, [])];
+    $('#chatBox').innerHTML = msgs.map(m => {
+      const time = new Date(m.ts).toLocaleString('ro-RO', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const mine = m.own;
+      return `<div class="flex ${mine ? 'justify-end' : 'justify-start'}">
+        <div class="max-w-[82%]">
+          <p class="text-[11px] mb-1 ${mine ? 'text-right' : ''} ${m.admin ? 'text-neon-300' : 'text-chrome-500'}">${m.admin ? '<i class="fa-solid fa-circle-check mr-1"></i>' : ''}${esc(m.name)} · ${time}</p>
+          <div class="px-4 py-2.5 text-sm leading-relaxed rounded-2xl ${mine ? 'btn-neon text-white rounded-br-md' : m.admin ? 'bg-neon-500/15 border border-neon-500/30 text-white rounded-bl-md' : 'bg-white/[0.06] text-chrome-100 rounded-bl-md'}">${esc(m.text)}</div>
+        </div>
+      </div>`;
+    }).join('');
+    $('#chatBox').scrollTop = $('#chatBox').scrollHeight;
+  }
+  $('#chatForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, text = f.msg.value.trim();
+    if (!text) return;
+    const name = f.name.value.trim() || 'Vizitator';
+    const list = store.get(CHAT_KEY, []);
+    list.push({ name, text, ts: Date.now(), own: true });
+    store.set(CHAT_KEY, list);
+    f.msg.value = ''; renderChat();
+    setTimeout(() => toast('💬 Mesaj trimis! Pentru răspuns rapid, scrie-ne și pe WhatsApp.'), 300);
+  });
+  renderChat();
+
+  /* =========================================================
+     ANIMAȚII LA SCROLL & CONTOARE
+     ========================================================= */
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('show');
+    io.unobserve(en.target);
+  }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  const counterIO = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target, target = +el.dataset.count, start = performance.now();
+    const tick = (t) => { const p = Math.min(1, (t - start) / 1600); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+    counterIO.unobserve(el);
+  }), { threshold: 0.6 });
+  $$('[data-count]').forEach(el => counterIO.observe(el));
+  </script>
+</body>
+</html>
