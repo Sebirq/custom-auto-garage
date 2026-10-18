@@ -1,10 +1,9 @@
 # RZV Auto Mods – site atelier modificări auto Galați
 
-Deschide `index.html` direct în browser (păstrează `banner.jpg` în același folder).
+Deschide `index.html` direct în browser (banner-ul e inclus în fișier).
 
 ## Ce trebuie completat
 În `index.html`, la începutul scriptului:
-- `CONFIG.phone` / `CONFIG.phoneDisplay` – numărul real de telefon
 - `CONFIG.address` / `CONFIG.mapQuery` – adresa atelierului
 - `SERVICES[].tiktok` – link-uri către clipuri TikTok pentru fiecare serviciu
 
